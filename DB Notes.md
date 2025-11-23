@@ -213,6 +213,25 @@ DELETE FROM EMPLOYEES;
 - **UPDATE → MODIFY** existing records.  
 - **DELETE → REMOVE** records.  
 
-DB2 follows **ANSI SQL standards**, so most queries look similar to MySQL/Oracle, but with slight differences (like `FETCH FIRST n ROWS ONLY` instead of `LIMIT`).  
+
+# ✅ Key Differences
+**Auto Increment :**
+- DB2 → GENERATED ALWAYS AS IDENTITY
+- MySQL → AUTO_INCREMENT
+- Oracle → GENERATED ALWAYS AS IDENTITY (modern versions)
+  
+**Limit Rows:**
+- DB2 → FETCH FIRST n ROWS ONLY
+- MySQL → LIMIT n
+- Oracle → FETCH FIRST n ROWS ONLY (older versions used ROWNUM)
+  
+**Data Types:**
+- DB2 → VARCHAR, DECIMAL
+- MySQL → VARCHAR, DECIMAL
+- Oracle → VARCHAR2, NUMBER
+
+
+
+
 
 --
