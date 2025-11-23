@@ -232,6 +232,101 @@ DELETE FROM EMPLOYEES;
 
 
 
+# 🔗 SQL JOIN Syntax
+
+## 1️⃣ INNER JOIN
+Returns rows when there is a match in both tables.  
+
+```sql
+SELECT E.NAME, D.DEPARTMENT_NAME
+FROM EMPLOYEES E
+INNER JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+```
+
+✅ Only employees with a matching department are returned.  
+
+---
+
+## 2️⃣ LEFT JOIN (LEFT OUTER JOIN)
+Returns all rows from the **left table** and matched rows from the right table.  
+
+```sql
+SELECT E.NAME, D.DEPARTMENT_NAME
+FROM EMPLOYEES E
+LEFT JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+```
+
+✅ Employees are shown even if they don’t belong to a department (NULL for missing matches).  
+
+---
+
+## 3️⃣ RIGHT JOIN (RIGHT OUTER JOIN)
+Returns all rows from the **right table** and matched rows from the left table.  
+
+```sql
+SELECT E.NAME, D.DEPARTMENT_NAME
+FROM EMPLOYEES E
+RIGHT JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+```
+
+✅ All departments are shown, even if no employees are assigned.  
+
+---
+
+## 4️⃣ FULL JOIN (FULL OUTER JOIN)
+Returns rows when there is a match in **either table**.  
+
+```sql
+SELECT E.NAME, D.DEPARTMENT_NAME
+FROM EMPLOYEES E
+FULL JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+```
+
+✅ Shows all employees and all departments, with NULLs where no match exists.  
+- **DB2 & Oracle** support `FULL JOIN`.  
+- **MySQL** does not support it directly (workaround: `UNION` of LEFT + RIGHT joins).  
+
+---
+
+## 5️⃣ CROSS JOIN
+Returns the **Cartesian product** (all combinations of rows).  
+
+```sql
+SELECT E.NAME, D.DEPARTMENT_NAME
+FROM EMPLOYEES E
+CROSS JOIN DEPARTMENTS D;
+```
+
+✅ If 10 employees and 5 departments → 50 rows returned.  
+
+---
+
+## 6️⃣ SELF JOIN
+A table joins with itself.  
+
+```sql
+SELECT E1.NAME AS EMPLOYEE, E2.NAME AS MANAGER
+FROM EMPLOYEES E1
+INNER JOIN EMPLOYEES E2
+ON E1.MANAGER_ID = E2.EMP_ID;
+```
+
+✅ Useful for hierarchical data (employees and their managers).  
+
+---
+
+# ✅ Summary
+- **INNER JOIN** → Only matching rows.  
+- **LEFT JOIN** → All left + matches.  
+- **RIGHT JOIN** → All right + matches.  
+- **FULL JOIN** → All rows from both sides.  
+- **CROSS JOIN** → Cartesian product.  
+- **SELF JOIN** → Join table with itself.  
+
 
 
 --
