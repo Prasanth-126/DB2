@@ -121,3 +121,98 @@ LIMIT 5;
 - **Differences**: DB2 is stricter and ANSI-compliant, while MySQL is flexible and open-source.  
 - **Comparison**: DB2 excels in enterprise analytics, Oracle dominates mission-critical systems, MySQL thrives in web apps.  
 
+
+# 🗂️ DB2 CRUD Operations
+
+## 1️⃣ CREATE (Insert Data)
+Used to add new records into a table.
+
+```sql
+-- Create a sample table
+CREATE TABLE EMPLOYEES (
+    EMP_ID INT GENERATED ALWAYS AS IDENTITY,
+    NAME VARCHAR(50),
+    DEPARTMENT VARCHAR(30),
+    SALARY DECIMAL(10,2)
+);
+
+-- Insert a single record
+INSERT INTO EMPLOYEES (NAME, DEPARTMENT, SALARY)
+VALUES ('John Doe', 'IT', 60000);
+
+-- Insert multiple records
+INSERT INTO EMPLOYEES (NAME, DEPARTMENT, SALARY)
+VALUES 
+('Alice', 'HR', 45000),
+('Bob', 'Finance', 70000);
+```
+
+---
+
+## 2️⃣ READ (Select Data)
+Used to retrieve records from a table.
+
+```sql
+-- Select all records
+SELECT * FROM EMPLOYEES;
+
+-- Select specific columns
+SELECT NAME, SALARY FROM EMPLOYEES;
+
+-- Select with condition
+SELECT NAME, DEPARTMENT, SALARY
+FROM EMPLOYEES
+WHERE DEPARTMENT = 'IT' AND SALARY > 50000;
+
+-- Limit rows (DB2 syntax)
+SELECT NAME, DEPARTMENT
+FROM EMPLOYEES
+FETCH FIRST 5 ROWS ONLY;
+```
+
+---
+
+## 3️⃣ UPDATE (Modify Data)
+Used to change existing records.
+
+```sql
+-- Update salary of a specific employee
+UPDATE EMPLOYEES
+SET SALARY = 65000
+WHERE NAME = 'John Doe';
+
+-- Update multiple columns
+UPDATE EMPLOYEES
+SET SALARY = SALARY + 5000, DEPARTMENT = 'Operations'
+WHERE DEPARTMENT = 'HR';
+```
+
+---
+
+## 4️⃣ DELETE (Remove Data)
+Used to delete records from a table.
+
+```sql
+-- Delete a specific record
+DELETE FROM EMPLOYEES
+WHERE NAME = 'Bob';
+
+-- Delete all records in a department
+DELETE FROM EMPLOYEES
+WHERE DEPARTMENT = 'Finance';
+
+-- Delete all records (truncate-like)
+DELETE FROM EMPLOYEES;
+```
+
+---
+
+# ✅ Summary
+- **CREATE → INSERT** new records.  
+- **READ → SELECT** records with conditions.  
+- **UPDATE → MODIFY** existing records.  
+- **DELETE → REMOVE** records.  
+
+DB2 follows **ANSI SQL standards**, so most queries look similar to MySQL/Oracle, but with slight differences (like `FETCH FIRST n ROWS ONLY` instead of `LIMIT`).  
+
+--
